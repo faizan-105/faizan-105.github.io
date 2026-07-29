@@ -1,0 +1,67 @@
+/* ============================================================
+   home.css — styles unique to the home / about page
+   ============================================================ */
+
+.hero { margin-bottom: 3.5rem; }
+
+.hero__eyebrow { margin-bottom: 1.1rem; }
+
+.hero__name {
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.9rem;
+}
+
+.hero__tagline {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(1.25rem, 3.4vw, 1.7rem);
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: var(--measure);
+}
+.hero__tagline em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* section heading pattern */
+.section { margin-top: 3.25rem; }
+.section > .eyebrow { display: block; margin-bottom: 1.1rem; }
+
+.prose {
+  max-width: var(--measure);
+  color: var(--ink);
+}
+.prose p + p { margin-top: 1rem; }
+.prose a { text-decoration: underline; text-decoration-color: var(--line-strong); }
+
+/* details as a definition-style grid */
+.details {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, auto) 1fr;
+  gap: 0.55rem 1.5rem;
+  max-width: var(--measure);
+}
+.details dt {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding-top: 0.15rem;
+}
+.details dd { color: var(--muted); }
+.details dd a { text-decoration: none; }
+.details dd a:hover { text-decoration: underline; }
+.details .sep { color: var(--line-strong); padding: 0 0.35rem; }
+
+/* recent writing preview */
+.recent { margin-top: 1rem; }
+.recent .link-cta { margin-top: 1.1rem; }
+
+@media (max-width: 560px) {
+  .details { grid-template-columns: 1fr; gap: 0.15rem 0; }
+  .details dt { margin-top: 0.75rem; }
+}

@@ -1,0 +1,81 @@
+/* ============================================================
+   projects.css — styles unique to the projects page
+   Each project is a "stop" on the route rail.
+   ============================================================ */
+
+.page-head { margin-bottom: 2.75rem; max-width: var(--measure); }
+.page-head .eyebrow { display: block; margin-bottom: 0.9rem; }
+.page-head h1 {
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  margin-bottom: 0.7rem;
+}
+.page-head p { color: var(--muted); max-width: var(--measure); }
+
+.projects { margin-top: 1rem; }
+
+.project {
+  padding-bottom: 2.25rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.project:last-child { border-bottom: 0; margin-bottom: 0; }
+
+.project__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  margin-bottom: 0.35rem;
+}
+.project__title {
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+.project__year {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faint);
+}
+
+.project__lede {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+}
+
+.project__desc {
+  color: var(--ink);
+  max-width: var(--measure);
+  margin-bottom: 1rem;
+}
+.project__desc p + p { margin-top: 0.5rem; }
+
+.project__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem 1rem;
+  margin-top: 1rem;
+}
+
+/* link row — leave href empty / "#" and fill in later */
+.project__links {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+}
+.project__links a[href="#"],
+.project__links a:not([href]) {
+  color: var(--faint);
+  cursor: default;
+  border-bottom: 1px dashed var(--line-strong);
+}
+.project__links a[href="#"]:hover { text-decoration: none; }
+
+@media (max-width: 560px) {
+  .project__title { font-size: 1.3rem; }
+}

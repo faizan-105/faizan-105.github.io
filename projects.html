@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Faizan Ahmed</title>
+    <meta
+      name="description"
+      content="Selected projects by Faizan Ahmed: machine learning from scratch, C++ systems, and web."
+    />
+
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (!t)
+            t = matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="projects.css" />
+  </head>
+  <body>
+    <!-- ============ NAV ============ -->
+    <header class="nav">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">FA</a>
+        <nav class="nav__links" aria-label="Primary">
+          <a class="nav__link" href="index.html">Home</a>
+          <a class="nav__link" href="projects.html" aria-current="page"
+            >Projects</a
+          >
+          <a class="nav__link" href="writings.html">Writing</a>
+          <button class="toggle" type="button" aria-label="Switch to dark mode">
+            <svg
+              class="icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+            </svg>
+            <svg
+              class="icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+              />
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============ MAIN ============ -->
+    <main class="site">
+      <div class="wrap">
+        <header class="page-head reveal">
+          <h1>Projects</h1>
+          <p>
+            Things I've built to learn how something really works; from a
+            regression model with no solver library to a shortest-path router
+            for cargo ships. Each stop below is one of them.
+          </p>
+        </header>
+
+        <!-- projects laid out as stops on the route rail -->
+        <div class="projects trail">
+          <!-- 1 -->
+          <article class="project node reveal">
+            <div class="project__head">
+              <h2 class="project__title serif">
+                Stock Price Prediction Engine
+              </h2>
+              <span class="project__year">Python</span>
+            </div>
+            <p class="project__lede">
+              Linear regression, written from scratch.
+            </p>
+            <div class="project__desc">
+              <p>
+                Built a linear regression model from the ground up on ten years
+                of price data across five companies — using gradient descent
+                directly instead of a library that solves it for you.
+              </p>
+              <p>
+                Then extended it into a multivariate version with vectorized
+                NumPy operations for speed.
+              </p>
+            </div>
+            <div class="project__meta">
+              <ul class="tags">
+                <li>Python</li>
+                <li>NumPy</li>
+                <li>Pandas</li>
+                <li>Matplotlib</li>
+                <li>yfinance</li>
+                <li>Gradient descent</li>
+              </ul>
+              <div class="project__links">
+                <!-- TODO: add link -->
+                <a
+                  href="https://github.com/faizan-105/Stock-price-prediction"
+                  target="_blank"
+                  >Repo &rarr;</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article class="project node reveal">
+            <div class="project__head">
+              <h2 class="project__title serif">OceanRoute Nav</h2>
+              <span class="project__year">C++ / SFML</span>
+            </div>
+            <p class="project__lede">Maritime shipping routes &amp; booking.</p>
+            <div class="project__desc">
+              <p>
+                Modeled 39 ports and 130+ routes as a custom graph, with a live
+                map view rendered in SFML.
+              </p>
+              <p>
+                Implemented cheapest and shortest pathfinding with Dijkstra's
+                algorithm, multi-leg routing, preference filtering, and
+                docking-queue management.
+              </p>
+            </div>
+            <div class="project__meta">
+              <ul class="tags">
+                <li>C++</li>
+                <li>SFML</li>
+                <li>Graphs</li>
+                <li>Linked list</li>
+                <li>Dijkstra</li>
+              </ul>
+              <div class="project__links">
+                <!-- TODO: add link -->
+                <a
+                  href="https://github.com/faizan-105/Ports_Navigation_System"
+                  target="_blank"
+                  >Repo &rarr;</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article class="project node reveal">
+            <div class="project__head">
+              <h2 class="project__title serif">Reader's Point</h2>
+              <span class="project__year">HTML / CSS</span>
+            </div>
+            <p class="project__lede">A digital bookstore, hand-built.</p>
+            <div class="project__desc">
+              <p>
+                Designed and developed a multi-page bookstore front end with
+                intuitive navigation between interconnected pages.
+              </p>
+              <p>
+                Reached 95%+ semantic-HTML compliance and shipped a
+                professional-grade static site in a two-week sprint.
+              </p>
+            </div>
+            <div class="project__meta">
+              <ul class="tags">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Flexbox</li>
+              </ul>
+              <div class="project__links">
+                <!-- TODO: add link -->
+                <a
+                  href="https://github.com/faizan-105/Book_store_website_responsive"
+                  target="_blank"
+                  >Repo &rarr;</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="project node reveal">
+            <div class="project__head">
+              <h2 class="project__title serif">UNO Card Game Engine</h2>
+              <span class="project__year">C++</span>
+            </div>
+            <p class="project__lede">UNO, playable in the console.</p>
+            <div class="project__desc">
+              <p>
+                Engineered a fully functional two-player UNO with 8+ reusable
+                functions and 5+ card effects — skip, reverse, draw-two, and
+                wild.
+              </p>
+              <p>
+                Hit around 90% compliance with the official UNO ruleset inside a
+                three-week build.
+              </p>
+            </div>
+            <div class="project__meta">
+              <ul class="tags">
+                <li>C++</li>
+                <li>Modular design</li>
+                <li>Control flow</li>
+              </ul>
+              <div class="project__links">
+                <!-- TODO: add link -->
+                <a href="#">Repo &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article class="project node reveal">
+            <div class="project__head">
+              <h2 class="project__title serif">Magical Pets Kingdom</h2>
+              <span class="project__year">C++ / OOP</span>
+            </div>
+            <p class="project__lede">A turn-based battle system in OOP.</p>
+            <div class="project__desc">
+              <p>
+                Architected a console fantasy RPG with turn-based combat and an
+                inheritance-based pet hierarchy.
+              </p>
+              <p>
+                A base <span class="mono">Pet</span> class with four subclasses
+                — Dragon, Phoenix, Unicorn, Griffin — each with two unique
+                abilities, leaning on polymorphism for a reusable combat loop.
+              </p>
+            </div>
+            <div class="project__meta">
+              <ul class="tags">
+                <li>C++</li>
+                <li>Inheritance</li>
+                <li>Polymorphism</li>
+                <li>Console I/O</li>
+              </ul>
+              <div class="project__links">
+                <!-- TODO: add link -->
+                <a href="#">Repo &rarr;</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <!-- /.projects -->
+      </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="foot">
+      <div class="foot__inner">
+        <span class="mono">© 2026 Faizan Ahmed</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

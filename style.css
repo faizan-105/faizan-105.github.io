@@ -1,0 +1,336 @@
+/* ============================================================
+   style.css — shared base for every page
+   Theme, typography, navigation, footer, and the "route rail"
+   signature (the faint line + node dots down the left side).
+   Page-specific layout lives in home.css / projects.css /
+   writings.css.
+   ============================================================ */
+
+/* ---- Theme tokens -------------------------------------------------- */
+:root {
+  --bg:          #f2f3f0;   /* cool paper, not cream */
+  --surface:     #fafbf8;
+  --ink:         #171a16;
+  --muted:       #6b6e67;
+  --faint:       #8b8e86;
+
+  /* dividers kept intentionally transparent */
+  --line:        rgba(23, 26, 22, 0.08);
+  --line-strong: rgba(23, 26, 22, 0.16);
+
+  --accent:      #1c6e5e;   /* deep pine-teal — routes & trails */
+  --accent-soft: rgba(28, 110, 94, 0.12);
+
+  --measure: 42rem;         /* comfortable reading width */
+  --pad: clamp(1.25rem, 5vw, 3rem);
+}
+
+html[data-theme="dark"] {
+  --bg:          #14171a;   /* cool near-black */
+  --surface:     #1b1f22;
+  --ink:         #e9ebe7;
+  --muted:       #9ba099;
+  --faint:       #767b74;
+
+  --line:        rgba(233, 235, 231, 0.09);
+  --line-strong: rgba(233, 235, 231, 0.18);
+
+  --accent:      #45bda3;
+  --accent-soft: rgba(69, 189, 163, 0.14);
+}
+
+/* ---- Reset -------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter Tight", system-ui, -apple-system, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+a:hover { text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- Type roles --------------------------------------------------- */
+.serif { font-family: "Newsreader", Georgia, serif; }
+.mono  { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+.eyebrow {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+h1, h2, h3 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Layout shell ------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.site {
+  flex: 1 0 auto;
+  padding: clamp(2rem, 6vw, 4rem) 0 4rem;
+}
+
+/* ---- Top navigation ---------------------------------------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: saturate(1.2) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 0.85rem var(--pad);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav__brand {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.nav__brand:hover { text-decoration: none; color: var(--accent); }
+
+.nav__links {
+  display: flex;
+  gap: 4rem;
+  margin-left: auto;
+  align-items: center;
+}
+.nav__link {
+  color: var(--muted);
+  font-size: 0.92rem;
+  position: relative;
+  padding: 0.2rem 0;
+}
+.nav__link:hover { color: var(--ink); text-decoration: none; }
+.nav__link[aria-current="page"] {
+  color: var(--ink);
+}
+.nav__link[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: -0.7rem;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+
+/* theme toggle */
+.toggle {
+  appearance: none;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.toggle:hover { color: var(--ink); border-color: var(--accent); transform: rotate(-18deg); }
+.toggle svg { width: 16px; height: 16px; }
+.toggle .icon-sun  { display: none; }
+html[data-theme="dark"] .toggle .icon-moon { display: none; }
+html[data-theme="dark"] .toggle .icon-sun  { display: block; }
+
+/* ---- The route rail (signature element) --------------------------- */
+/* A faint vertical line with node dots marking each stop. */
+.trail { position: relative; }
+.trail::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--line-strong) 8%,
+    var(--line-strong) 92%,
+    transparent
+  );
+}
+
+.node {
+  position: relative;
+  padding-left: 2.1rem;
+}
+.node::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--line-strong);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.node:hover::before,
+.node:focus-within::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* ---- Tag chips ---------------------------------------------------- */
+.tags {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.tags li {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.18rem 0.6rem;
+  background: var(--surface);
+}
+
+/* ---- Link rows (used for writing + inline lists) ------------------ */
+.rows { list-style: none; padding: 0; }
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.row__date {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faint);
+  flex: 0 0 auto;
+  min-width: 6.5rem;
+}
+.row__title { color: var(--ink); font-size: 1.02rem; }
+ .row span {color: var(--muted) }
+.row a.row__title:hover { text-decoration: none; }
+
+/* ---- Buttons / call-to-action links ------------------------------- */
+.link-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+.link-cta .arrow { transition: transform 0.2s ease; }
+.link-cta:hover { text-decoration: none; }
+.link-cta:hover .arrow { transform: translateX(3px); }
+
+/* placeholder markers you can find + replace later */
+.todo {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: var(--faint);
+  border: 1px dashed var(--line-strong);
+  border-radius: 6px;
+  padding: 0.1rem 0.45rem;
+}
+
+/* ---- Footer ------------------------------------------------------- */
+.foot {
+  flex-shrink: 0;
+  border-top: 1px solid var(--line);
+  padding: 1.6rem 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.foot__inner {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+.foot__inner .mono { color: var(--faint); }
+.foot a { color: var(--muted); }
+.foot a:hover { color: var(--accent); }
+
+/* ---- Entrance motion --------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .toggle:hover { transform: none; }
+}
+
+/* ---- Small screens ------------------------------------------------ */
+@media (max-width: 560px) {
+  .nav__inner { gap: 1rem; }
+  .nav__links { gap: 0.85rem; }
+  .nav__link { font-size: 0.86rem; }
+  .row { flex-direction: column; gap: 0.2rem; }
+  .row__date { min-width: 0; }
+  .node { padding-left: 1.7rem; }
+}
